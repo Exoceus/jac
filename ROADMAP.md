@@ -115,12 +115,13 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done
 
 ## Current Focus
 
-**Phase 0.1.** Immediate actions:
-1. Install `icarus-verilog` (done, v13) + a VCD viewer (Surfer — GTKWave is broken on this macOS).
-2. Answer the "three MAC questions" (multiply = which logic type? what holds the
-   accumulator across steps? what enforces multiply-then-add ordering when both
-   units exist simultaneously?).
-3. Next tutor step after that: first tiny build target in simulation.
+**Phase 0.1 — first build.** Jatin is building a clocked counter (his MAC minus
+the multiplier):
+1. HDLBits warmup: Getting Started + Basics + a few D flip-flop exercises.
+2. Write `counter.sv` (clk, rst, 8-bit count) + `counter_tb.sv` (clock gen,
+   `$dumpfile`/`$dumpvars`, `$finish`) — his code, not the tutor's.
+3. Simulate with `iverilog -g2012` / `vvp`, view VCD in Surfer.
+4. Before running: predict count on the first 5 edges; compare vs waveform.
 
 ---
 
@@ -140,3 +141,15 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done
   **new to HDL**, no tools installed yet.
 - Locked the decisions in the table above. Created this roadmap + Claude memory.
 - Handed off: install toolchain + answer the three MAC reasoning questions.
+
+### 2026-07-01 — Session 2
+- Toolchain: iverilog v13 installed and working. GTKWave cask broken on this
+  macOS → switched viewer decision to **Surfer** (native ARM or browser).
+- Built the MAC concept from first principles (why MACs exist, space-for-time
+  trade, cycle-by-cycle accumulation table, calculator analogy).
+- Jatin correctly answered all three MAC questions: multiplier is combinational;
+  acc lives in a register (not BRAM) wired in a feedback loop through the adder;
+  clock period must cover mult+add propagation delay. Introduced terms:
+  propagation delay, critical path, fmax, setup time. Explained FPGA fabric =
+  LUTs + flip-flops in every slice (registers aren't a CPU-only thing).
+- Handed off: Phase 0.1 counter build (see Current Focus).
