@@ -10,6 +10,7 @@ HDL = Hardware Description Language (e.g., Verilog)
 - Module is basically a function that takes inputs and converts into outputs.
 - Assignment is continuous (analog so like infinite invocations of the function)
 - Vector is like an array
+- But vector has indexing direction (little or big endian): `type [upper:lower] vector_name;`
 - Constants can be represented in binary, decimal and hex: {4'ha, 4'd10} => 8'b10101010
 - Replication operator: {num{vector}}
 
